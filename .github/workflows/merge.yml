@@ -4,7 +4,7 @@ name: Merge branch to master and Build workflow
 on:
   push:
     branches:
-      - 'release/*'
+      - release/*
 
 jobs: 
   merge-branch: 
