@@ -1,13 +1,13 @@
-# Continuos Merge and Deployment workflow
-name: Merge branch to master and Build workflow
+# Merge
+name: Merge
 
 on:
   push:
     branches:
-      - release/*
+      - '*'
 
 jobs: 
-  merge-branch: 
+  merge: 
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -23,12 +23,6 @@ jobs:
           git config --global user.name "cd-user"
       - name: Install
         run: npm install
-      - name: everlytic/branch-merge@1.1.2
-        with:
-          github_token: ${{ github.token }}
-          source_ref: ${{ github.ref }}
-          target_branch: 'master'
-          commit_message_template: '[Automated] Merge {source_ref} into target {tareget_branch}'
       - name: Build
         run: npm run build
       - name: Deploy
